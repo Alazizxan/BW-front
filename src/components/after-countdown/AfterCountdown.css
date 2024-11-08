@@ -1,0 +1,32 @@
+.profile .profile-container {
+  margin: 30px auto;
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile .avatar {
+    width: 86px;
+    border-radius: 50%;
+    margin-bottom: 0px;
+}
+
+.profile .nickname {
+  font-family: 'Monomaniac One', serif;
+  font-size: 24px;
+  color: white;
+  margin-bottom: 8px !important;
+}
+
+.profile .account-balance {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Monomaniac One', serif;
+  font-size: 42px;
+  color: white;
+  font-weight: normal;
+}
+
+

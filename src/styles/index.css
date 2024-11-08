@@ -40,23 +40,50 @@
 
 .tasks {
   overflow-y: scroll;
-  height: 450px; /* Default height */
+  height: 450px;
 }
 
+.histories {
+  overflow-y: scroll;
+  height: 210px;
+}
 
+@media (max-height: 830px) {
+  .histories {
+    overflow-y: scroll;
+    height: 140px !important;
+  }
+}
+
+@media (max-height: 760px) {
+  .histories {
+    display: none;
+    overflow-y: scroll;
+    height: 140px !important;
+  }
+
+  .indicate {
+    display: none;
+  }
+}
+
+.histories::-webkit-scrollbar,
 .tasks::-webkit-scrollbar {
   width: 1px;
 }
 
+.histories::-webkit-scrollbar-track,
 .tasks::-webkit-scrollbar-track {
   background: transparent;
 }
 
+.histories::-webkit-scrollbar-thumb,
 .tasks::-webkit-scrollbar-thumb {
   background-color: transparent;
   border-radius: 6px;
 }
 
+.histories::-webkit-scrollbar-thumb:hover,
 .tasks::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
