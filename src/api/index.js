@@ -13,6 +13,28 @@ export const fetchTasks = async (telegramId) => {
     return response.data.data;
 }
 
+export const compleateTask = async (taskId, telegramId) => {
+    const response = await api.post(`/tasks/pass/`, {telegramId, taskId})
+    return response.data.data;
+}
+
+
+export const connectWallet = async (telegramId, walletAddress) => {
+    const response = await api.post(`/wallet/create/`, {
+        userId: telegramId,
+        walletAddress: walletAddress
+    });
+
+    return response.data.data;
+}
+
+
+
+export const dissconnectWallet = async (walletAddress) => {
+    await api.delete(`/wallet/delete/${walletAddress}`)
+    return true
+}
+
 export const getStatus = async () => {
     const response = await api.get('/countdown/get')
     return response.data.data.status;

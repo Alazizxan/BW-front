@@ -6,6 +6,7 @@ import Earn from "./pages/Earn.jsx";
 import Friends from "./pages/Friends.jsx";
 import Wallet from "./pages/Wallet.jsx";
 import Wrapper from "./wrapper/Wrapper.jsx";
+import Passed from "./pages/Passed.jsx";
 
 import useAppStore from "./store/app.js";
 
@@ -36,7 +37,7 @@ function App() {
              <Route path="/wallet" element={<Wallet />} />
          </Route>
 
-         {/*<Route path="/passed" element={<Passed />} />*/}
+         <Route path="/passed" element={<Passed />} />
      </Routes>
   )
 
