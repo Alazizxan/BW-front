@@ -2,10 +2,8 @@ import React from "react";
 
 import UIPageIndicator from "../components/ui/PageIndicator/PageIndicator.jsx";
 import UIStatus from "../components/ui/PageStatus/PageStatus.jsx";
-import AfterCountdwon from "../components/after-countdown/AfterCountdwon.jsx";
 
-import useAppStore from "../hooks/app.js";
-import History from "../components/history/History.jsx";
+import useAppStore from "../store/app.js";
 import Profile from "../components/profile/Profile.jsx";
 
 export default function Wallet() {

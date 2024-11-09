@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import Task from "../components/task/Task.jsx";
 import Profile from "../components/profile/Profile.jsx";
-import useAppStore from "../hooks/app.js";
+import useAppStore from "../store/app.js";
 
 
 export default function Home() {

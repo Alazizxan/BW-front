@@ -1,5 +1,5 @@
 import React from "react";
-import useAppStore from "../hooks/app.js";
+import useAppStore from "../store/app.js";
 
 import UIStatus from "../components/ui/PageStatus/PageStatus.jsx";
 import UIPageIndicator from "../components/ui/PageIndicator/PageIndicator.jsx";

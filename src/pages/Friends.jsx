@@ -1,9 +1,9 @@
 import React from "react";
 
-import useAppStore from "../hooks/app.js";
 import UIStatus from "../components/ui/PageStatus/PageStatus.jsx";
 import UIPageIndicator from "../components/ui/PageIndicator/PageIndicator.jsx";
 import Friend from "../components/friend/Friend.jsx";
+import useAppStore from "../store/app.js";
 
 export default function Friends() {
     const app = useAppStore();
