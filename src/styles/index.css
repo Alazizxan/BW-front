@@ -38,6 +38,10 @@
   color: rgb(255, 255, 255); 
 }
 
+.show-btn:disabled {
+  background: #908f8f;
+}
+
 .tasks {
   overflow-y: scroll;
   height: 450px;

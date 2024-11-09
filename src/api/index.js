@@ -13,14 +13,30 @@ export const fetchTasks = async (telegramId) => {
     return response.data.data;
 }
 
+export const getStatus = async () => {
+    const response = await api.get('/countdown/get')
+    return response.data.data.status;
+}
+
+export const updateStatus = async (status) => {
+    const response = await api.post('/countdown/update', { status: status });
+    return response.data.data;
+}
+
+export const fetchFriends = async (referallId) => {
+    const response = await api.get(`/users/friends/${referallId}`);
+    return response.data.data;
+}
 
 export const register = async () => {
-    const {user} = useTelegram()
+    const {user, referall } = useTelegram()
+
 
     const response = await api.post(`/users/register`, {
         firstName: user.first_name,
         telegramId: user.id,
-        profileImage: user.photo_url
+        profileImage: user.photo_url,
+        referall: referall,
     });
 
     return response.data.data;

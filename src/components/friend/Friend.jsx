@@ -1,6 +1,6 @@
 import React from 'react';
 import './Friend.css';
-import profileImage from '../../assets/images/profile.svg';
+import profileImage from '../../assets/images/friend-profile.svg';
 
 function Friend({ friendName, money, date, clock }) {
   return (
