@@ -8,8 +8,33 @@ const api = axios.create({
 })
 
 
-export const fetchTasks = async (telegramId) => {
+export const fetchUserTasks = async (telegramId) => {
     const response = await api.get(`/tasks/all/${telegramId}`);
+    return response.data.data;
+}
+
+export const fetchTasks = async () => {
+    const response = await api.get(`/tasks/all/`);
+    return response.data.data;
+}
+
+export const updateTask = async (taskId, data) => {
+    const response = await api.post(`/tasks/update/${taskId}`, data);
+    return response.data.data;
+}
+
+export const fetchTask = async (taskId) => {
+    const response = await api.get(`/tasks/get/${taskId}`)
+    return response.data.data;
+}
+
+export const deleteTask = async (taskId) => {
+    const response = await api.get(`/tasks/delete/${taskId}`)
+    return response.data.data;
+}
+
+export const createTask = async (taskData) => {
+    const response = await api.post(`/tasks/create`, taskData);
     return response.data.data;
 }
 

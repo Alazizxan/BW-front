@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-import {compleateTask, fetchFriends, fetchTasks, getStatus, register} from "../api/index.js";
+import {compleateTask, fetchFriends, fetchUserTasks, getStatus, register} from "../api/index.js";
 
 import getFileLink from "../utils/file.js";
 
@@ -15,7 +15,7 @@ const useAppStore = create((set) => ({
     init: async (referall) => {
         const user = await register(referall)
         const friends = await fetchFriends(user.telegramId);
-        const tasks = await fetchTasks(user.telegramId);
+        const tasks = await fetchUserTasks(user.telegramId);
         const profileImage = await getFileLink(user.profileImage);
         const status = await getStatus();
 
@@ -27,7 +27,7 @@ const useAppStore = create((set) => ({
             await compleateTask(taskId, state.user.telegramId);
             const user = await register(state.user.telegramId);
 
-            fetchTasks(state.user.telegramId).then(async (updatedTasks) => {
+            fetchUserTasks(state.user.telegramId).then(async (updatedTasks) => {
                 set({ user: user})
                 set({tasks: updatedTasks});
             });

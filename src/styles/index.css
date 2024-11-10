@@ -11,6 +11,10 @@
 @tailwind components;
 @tailwind utilities;
 
+input:focus {
+  outline: none;
+}
+
 .btn-container{
   display: flex;
   flex-direction: column; 
@@ -44,7 +48,6 @@
 
 .tasks {
   overflow-y: scroll;
-  height: 450px;
 }
 
 .histories {
