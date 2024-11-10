@@ -9,7 +9,7 @@ export default function Admin () {
                 </div>
                 <div className="buttons">
                         <NavLink to={"/admin"}><button>Statistic</button></NavLink>
-                        <NavLink to={"/admin/tasks"}><button>Countdown</button></NavLink>
+                        <NavLink to={"/admin/countdown"}><button>Countdown</button></NavLink>
                         <NavLink to={"/admin/tasks"}><button>Tasks</button></NavLink>
                 </div>
         </div>

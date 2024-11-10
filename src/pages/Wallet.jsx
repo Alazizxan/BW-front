@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, {useState, useEffect, useCallback} from "react";
 
 import UIPageIndicator from "../components/ui/PageIndicator/PageIndicator.jsx";
 import UIStatus from "../components/ui/PageStatus/PageStatus.jsx";
@@ -7,7 +7,7 @@ import useAppStore from "../store/app.js";
 import Profile from "../components/profile/Profile.jsx";
 import Countdown from "../components/countdown/Countdown.jsx";
 
-import { useTonConnectUI } from "@tonconnect/ui-react";
+import {useTonConnectUI} from "@tonconnect/ui-react";
 import {connectWallet, dissconnectWallet} from "../api/index.js";
 
 
@@ -72,24 +72,24 @@ export default function Wallet() {
 
 
     return <>
-         <UIStatus friends={120} user={{
+        <UIStatus friends={120} user={{
             firstName: app.user.firstName,
             balance: app.user.balance,
             profileImage: app.profileImage
-        }} />
+        }}/>
 
-        <UIPageIndicator page="Wallet" />
+        <UIPageIndicator page="Wallet"/>
 
         {
-            app.status === false && (
-                <Countdown />
+            app.status === true && (
+                <Countdown/>
             )
         }
 
         {
-            app.status && (
+            app.status == false && (
                 <div className="after-countdown mt-[12%]">
-                    <Profile user={app.user} profileImage={app.profileImage} />
+                    <Profile user={app.user} profileImage={app.profileImage}/>
                 </div>
             )
         }
@@ -97,13 +97,14 @@ export default function Wallet() {
 
         <div className="btn-container">
 
-             {
+            {
                 app.status && (
-                    <button disabled={!tonWalletAddress} onClick={() => console.log("invite")} className="show-btn">Cash withdrawal</button>
+                    <button disabled={!tonWalletAddress} onClick={() => console.log("invite")} className="show-btn">Cash
+                        withdrawal</button>
                 )
-             }
+            }
 
-           {
+            {
                 tonWalletAddress ?
                     <button onClick={handleWalletAction} className="show-btn disconnect">
                         {isLoading ? "Loading" : "Disconnect your wallet"}

@@ -18,6 +18,7 @@ import UpdateTask from './admin/UpdateTask.jsx'
 
 import Admin from "./admin/layout/Admin.jsx";
 import {CreateTask} from "./admin/CreateTask.jsx";
+import UpdateCountdown from "./admin/UpdateCountdown.jsx";
 
 function App() {
     const app = useAppStore()
@@ -51,6 +52,7 @@ function App() {
                     <Route path='tasks' element={<Tasks/>}/>
                     <Route path='tasks/update/:id' element={<UpdateTask/>}/>
                     <Route path='tasks/create/' element={<CreateTask/>}/>
+                    <Route path='countdown/' element={<UpdateCountdown/>}/>
                 </Route>
             </Routes>
     )

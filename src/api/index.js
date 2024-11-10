@@ -18,6 +18,21 @@ export const fetchTasks = async () => {
     return response.data.data;
 }
 
+export const fetchCountdown = async () => {
+    const response = await api.get(`/countdown/get`);
+    return response.data.data;
+}
+
+export const updateCountdown = async (data) => {
+    const response = await api.post(`/countdown/update`, data);
+    return response.data.data;
+}
+
+export const fetchUsersCount = async () => {
+    const response = await api.get(`/users/count`);
+    return response.data.data;
+}
+
 export const updateTask = async (taskId, data) => {
     const response = await api.post(`/tasks/update/${taskId}`, data);
     return response.data.data;

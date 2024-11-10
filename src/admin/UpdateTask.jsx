@@ -37,7 +37,7 @@ export default function UpdateTask() {
      const handleUpdate = async () => {
         setIsLoading(true);
         try {
-            await updateTask(params.id, task);
+            await updateTask(params.id, {...task, cost: Number(task.cost)});
             navigate('/admin/tasks')
         } catch (error) {
             console.error("Failed to update task:", error);
@@ -87,7 +87,7 @@ export default function UpdateTask() {
                     />
 
                     <button
-                        className="w-[100%] bg-blue-600 h-[40px] text-white rounded-sm"
+                        className="w-[100%] bg-blue-600 h-[40px] text-white mt-[10%] rounded-sm"
                         onClick={handleUpdate}
                         disabled={isLoading}
                     >

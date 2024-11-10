@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './Countdown.css'
+import './Countdown.css';
 import { io } from 'socket.io-client';
-import {updateStatus} from "../../api/index.js";
+import { updateStatus } from "../../api/index.js";
+import log from "eslint-plugin-react/lib/util/log.js";
 
 const Countdown = () => {
   const [days, setDays] = useState('00');
@@ -11,34 +12,37 @@ const Countdown = () => {
   const [minutesOnes, setMinutesOnes] = useState('0');
   const [countdownDate, setCountdownDate] = useState(null);
 
-  const socket = io(import.meta.env.VITE_API_BASE_URL);
-
   useEffect(() => {
+    const socket = io(import.meta.env.VITE_API_BASE_URL);
+
     socket.on('connect', () => {
       console.log('Connected to Socket.IO server');
     });
 
     socket.on('countdownDate', (date) => {
+      console.log(date)
       setCountdownDate(date);
-      startCountdown();
     });
 
     return () => {
       socket.off('countdownDate');
+      socket.disconnect();
     };
-  }, [socket]);
+  }, []);
 
-  const startCountdown = () => {
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
+  useEffect(() => {
+    if (countdownDate) {
+      const interval = setInterval(updateCountdown, 1000);
 
-    return () => clearInterval(interval);
-  };
+      return () => clearInterval(interval);
+    }
+  }, [countdownDate]);
 
   const updateCountdown = async () => {
     if (countdownDate) {
       const now = new Date().getTime();
       const distance = countdownDate - now;
+
 
       if (distance > 0) {
         setDays(String(Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0')));
@@ -56,12 +60,11 @@ const Countdown = () => {
         setMinutesTens('0');
         setMinutesOnes('0');
 
-        await updateStatus(true)
-        window.location.href = '/wallet'
+        await updateCountdown({ status: false });
+        window.location.href = '/wallet';
       }
     }
   };
-
 
   return (
     <div className="countdown-container">
