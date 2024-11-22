@@ -12,7 +12,7 @@ export default function Friends() {
     const app = useAppStore();
 
     const handleAction = () => {
-        navigator.clipboard.writeText(`https://t.me/nodeloper_bot/black_wallet?startapp=${app.user.telegramId}`);
+        navigator.clipboard.writeText(`https://t.me/ASAPNARbot/test?startapp=${app.user.telegramId}`);
         toast('Invite link copied');
     }
 
@@ -37,7 +37,7 @@ export default function Friends() {
                             <Friend
                                 key={index}
                                 friendName={friend.firstName}
-                                money={100}
+                                money={friend.balance}
                                 clock={friend.time}
                                 date={friend.date}
                             />

@@ -1,7 +1,7 @@
 import './UILoading.css'
 
 export default function UILoading() {
-    return <div class="loading-overlay">
-        <div class="spinner"></div>
+    return <div className="loading-overlay">
+        <div className="spinner"></div>
     </div>
 }

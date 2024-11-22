@@ -33,7 +33,7 @@ export default function Earn() {
 
         <UIPageIndicator page="Tasks" />
 
-        <div className="tasks h-[450px] flex flex-col gap-[8px] mt-[15px] overflow-y-scroll">
+        <div className="tasks h-[400px] flex flex-col gap-[8px] mt-[15px] overflow-y-scroll">
             { app.tasks.tasks.map((task, index) => (
                 <Task
                     key={'notPassed-' +index}
