@@ -13,6 +13,11 @@ export const fetchUserTasks = async (telegramId) => {
     return response.data.data;
 }
 
+export const fetchTopRef = async () => {
+    const response = await api.get('/top-referrals');
+    return response.data.data;
+}
+
 export const fetchTasks = async () => {
     const response = await api.get(`/tasks/all/`);
     return response.data.data;

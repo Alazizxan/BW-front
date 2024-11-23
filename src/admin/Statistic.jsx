@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {fetchUsersCount} from "../api/index.js";
+import React, { useEffect, useState } from "react";
+import { fetchUsersCount } from "../api/index.js";
 
 import UILoading from "../components/ui/Loading/UILoading.jsx";
 
@@ -9,23 +9,27 @@ export default function Statistic() {
 
     const fetchCount = async () => {
         setLoading(true);
-        const data = await fetchUsersCount()
-        setCount(data)
-    }
+        const data = await fetchUsersCount();
+        setCount(data);
+        setLoading(false); // Correctly reset the loading state here
+    };
 
     useEffect(() => {
-        fetchCount().then(() => setLoading(false));
-    })
+        fetchCount();
+    }, []);
 
-    return <>
+    return (
         <div className="statistic">
             {
-                loading ? <UILoading/> : <div className="count flex flex-col items-center justify-center mt-[50px]">
-                    <span className="count-title text-xl">Total users: </span>
-                    <span className={'text-[50px]'}>{count}</span>
-                </div>
+                loading ? (
+                    <UILoading />
+                ) : (
+                    <div className="count flex flex-col items-center justify-center mt-[50px]">
+                        <span className="count-title text-xl">Total users: </span>
+                        <span className="text-[50px]">{count}</span>
+                    </div>
+                )
             }
-
         </div>
-    </>
+    );
 }

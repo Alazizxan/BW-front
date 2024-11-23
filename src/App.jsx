@@ -12,6 +12,8 @@ import UILoading from "./components/ui/Loading/UILoading.jsx";
 
 import useAppStore from "./store/app.js";
 
+import TopReferrals from "./pages/Topref.jsx"
+
 import Statistic from "./admin/Statistic.jsx";
 import Tasks from "./admin/Tasks.jsx";
 import UpdateTask from './admin/UpdateTask.jsx'
@@ -43,6 +45,7 @@ function App() {
                     <Route path="/earn" element={<Earn/>}/>
                     <Route path="/friends" element={<Friends/>}/>
                     <Route path="/wallet" element={<Wallet/>}/>
+                    <Route path='/topreferrals' element={<TopReferrals/>}/>
                 </Route>
 
                 <Route path="/passed" element={<Passed/>}/>

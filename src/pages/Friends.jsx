@@ -30,7 +30,7 @@ export default function Friends() {
 
             <UIPageIndicator page="Friends" />
 
-            <div className="tasks max-h-[350px] flex flex-col gap-[8px] mt-[15px] overflow-y-scroll">
+            <div className="tasks max-h-[320px] flex flex-col gap-[8px] mt-[15px] overflow-y-scroll">
                 {
                     app.friends.map((friend, index) => {
                         return (
