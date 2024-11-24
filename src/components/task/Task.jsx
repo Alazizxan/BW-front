@@ -29,15 +29,9 @@ const Task = ({taskTitle, taskDescription, taskLink, status, action, admin, upda
                         Open
                     </a>
                 ) : (
-                    <a
-                        onClick={(e) => {
-                            e.preventDefault();
-                            action();
-                        }}
-                        className="task__button"
-                    >
+                    <span className="task__button">
                         Passed
-                    </a>
+                    </span>
                 )}
             </div>
         );

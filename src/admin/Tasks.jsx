@@ -39,7 +39,7 @@ export default function Tasks() {
         return <UILoading/>
     } else {
         return <>
-            <div className="tasks h-[400px] flex flex-col gap-[8px] mt-[15px] p-[0px] overflow-y-scroll">
+            <div className="tasks h-[350px] flex flex-col gap-[8px] mt-[15px]  p-[0px] overflow-y-scroll">
                 {tasks.map((task, index) => (
                     <Task
                         key={'task-' + index}
@@ -55,7 +55,7 @@ export default function Tasks() {
             </div>
 
              <button
-                className="w-[90%] mx-auto mt-[20px] bg-blue-600 h-[40px] text-white rounded-[8px]"
+                className="w-[90%] mx-auto mt-[15px] mb-[5px] bg-white h-[40px] text-black rounded-[8px]"
                 onClick={() => navigate(`/admin/tasks/create`)}
                 disabled={isLoading}
             >

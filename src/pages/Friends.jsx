@@ -12,7 +12,7 @@ export default function Friends() {
     const app = useAppStore();
 
     const handleAction = () => {
-        navigator.clipboard.writeText(`https://t.me/ASAPNARbot/test?startapp=${app.user.telegramId}`);
+        navigator.clipboard.writeText(`https://t.me/ASAPNARbot?start=${app.user.telegramId}`);
         toast('Invite link copied');
     }
 
