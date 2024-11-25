@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import React from "react";
-import Task from "../components/task/Task.jsx";
+import ActiveCard from "../components/active/active.jsx";
 import Profile from "../components/profile/Profile.jsx";
 import useAppStore from "../store/app.js";
 
@@ -16,10 +16,9 @@ export default function Home() {
 
     return <>
        <div className="mt-[20px]">
-            <Task
-                taskTitle="Tribes"
-                taskDescription="Compete for rewards"
-                taskLink={'/earn'}
+            <ActiveCard
+                taskTitle="Premium"
+                taskDescription="Get active and get prize!"
                 status={false}
                 action={() => action()}
             />

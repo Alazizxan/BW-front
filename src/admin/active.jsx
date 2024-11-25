@@ -3,12 +3,12 @@ import {deleteTask, fetchTasks} from "../api/index.js";
 import { useNavigate } from "react-router-dom";
 
 import UILoading from "../components/ui/Loading/UILoading.jsx";
-import Task from '../components/task/Task.jsx'
+import ActiveCard from '../components/active/active.jsx';
 
 import useAppStore from "../store/app.js";
 
 
-export default function Tasks() {
+export default function Avtive() {
     const [tasks, setTasks] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -40,18 +40,15 @@ export default function Tasks() {
     } else {
         return <>
             <div className="tasks h-[450px] flex flex-col gap-[8px] mt-[15px]  p-[0px] overflow-y-scroll">
-                {tasks.map((task, index) => (
-                    <Task
-                        key={'task-' + index}
-                        taskTitle={task.title}
-                        taskDescription={task.description}
-                        taskLink={task.link}
-                        admin={true}
-                        status={false}
-                        update={() => navigate(`/admin/tasks/update/${task.id}`)}
-                        del={async () => await del(task.id)}
-                    />
-                ))}
+            <div className="mt-[20px]">
+            <ActiveCard
+                taskTitle="Username"
+                taskDescription="active"
+                status={true}
+                action={() => action()}
+                admin={true}
+            />
+        </div>
             </div>
 
              <button

@@ -8,6 +8,7 @@ import Wallet from "./pages/Wallet.jsx";
 import Wrapper from "./wrapper/Wrapper.jsx";
 import Passed from "./pages/Passed.jsx";
 import UILoading from "./components/ui/Loading/UILoading.jsx";
+import AllUserAdmn from "./pages/Alluser-admn.jsx";
 
 
 import useAppStore from "./store/app.js";
@@ -17,7 +18,7 @@ import TopReferrals from "./pages/Topref.jsx"
 import Statistic from "./admin/Statistic.jsx";
 import Tasks from "./admin/Tasks.jsx";
 import UpdateTask from './admin/UpdateTask.jsx'
-
+import Active from './admin/active.jsx';
 import Admin from "./admin/layout/Admin.jsx";
 import {CreateTask} from "./admin/CreateTask.jsx";
 import UpdateCountdown from "./admin/UpdateCountdown.jsx";
@@ -52,11 +53,14 @@ function App() {
 
                 <Route path='/admin' element={<Admin/>}>
                     <Route index element={<Statistic/>}/>
+                    <Route path='active' element={<Active/>}/>
                     <Route path='tasks' element={<Tasks/>}/>
                     <Route path='tasks/update/:id' element={<UpdateTask/>}/>
                     <Route path='tasks/create/' element={<CreateTask/>}/>
                     <Route path='countdown/' element={<UpdateCountdown/>}/>
                 </Route>
+                <Route path='Alluser/' element={<AllUserAdmn/>}/> //this is a new
+
             </Routes>
     )
 

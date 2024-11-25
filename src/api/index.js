@@ -18,6 +18,11 @@ export const fetchTopRef = async () => {
     return response.data.data;
 }
 
+export const fetchAllUsers = async () => {
+    const response = await api.get('/alluseradm');
+    return response.data.data;
+}
+
 export const fetchTasks = async () => {
     const response = await api.get(`/tasks/all/`);
     return response.data.data;
@@ -75,7 +80,7 @@ export const connectWallet = async (telegramId, walletAddress) => {
 
 
 
-export const dissconnectWallet = async (walletAddress) => {
+export const disconnectWallet = async (walletAddress) => {
     await api.delete(`/wallet/delete/${walletAddress}`)
     return true
 }
