@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-import {compleateTask, fetchCountdown, fetchFriends, fetchTopRef, fetchUserTasks, getStatus, register} from "../api/index.js";
+import {compleateTask, fetchCountdown, fetchFriends, fetchTopRef, fetchUserDetails, fetchUserTasks, getStatus, register} from "../api/index.js";
 
 import getFileLink from "../utils/file.js";
 
@@ -11,6 +11,7 @@ const useAppStore = create((set) => ({
     profileImage: {},
     status: null,
     topfer: {},
+    statususer: {},
 
 
     init: async (referall) => {
@@ -21,8 +22,9 @@ const useAppStore = create((set) => ({
         const profileImage = await getFileLink(user.profileImage);
         const status = countdown.status;
         const topfer = await fetchTopRef();
+        const statususer = await fetchUserDetails(user.telegramId);
 
-        set({user, profileImage, status, friends, topfer, tasks});
+        set({user, profileImage, status, friends, topfer, tasks,statususer});
     },
 
     passTask: async (taskId) => {

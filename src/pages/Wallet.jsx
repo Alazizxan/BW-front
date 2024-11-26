@@ -11,6 +11,7 @@ import useAppStore from "../store/app.js";
 import { useTonConnectUI } from "@tonconnect/ui-react";
 import { connectWallet, disconnectWallet } from "../api/index.js";
 
+
 export default function Wallet() {
     const app = useAppStore();
 
@@ -28,81 +29,65 @@ export default function Wallet() {
         });
         console.log("Wallet connected successfully!");
     }, []);
-
-    // Walletni uzish
+    
+    // Walletni uzish faqat qo'lda bajarilsin
     const handleWalletDisconnection = useCallback(async () => {
         setIsLoading(true);
-        await dissconnectWallet(app.user.id).then(() => {
+        await disconnectWallet(app.user.id).then(() => {
             setIsLoading(false);
             setTonWalletAddress(null);
         });
         console.log("Wallet disconnected successfully!");
     }, []);
-
+    
     // Wallet holatini tekshirish va boshqarish
     useEffect(() => {
         const checkWalletConnection = async () => {
             if (tonConnectUI.account?.address) {
                 await handleWalletConnection(tonConnectUI.account?.address);
-            } else {
-                await handleWalletDisconnection();
             }
+            // disconnect qismi avtomatik ravishda bajarilmaydi
         };
-
+    
         checkWalletConnection();
-
+    
         const unsubscribe = tonConnectUI.onStatusChange(async (wallet) => {
             if (wallet) {
                 await handleWalletConnection(wallet.account.address);
-            } else {
-                await handleWalletDisconnection();
             }
+            // disconnect qismi avtomatik ravishda bajarilmaydi
         });
-
+    
         return () => {
             unsubscribe();
         };
-    }, [tonConnectUI, handleWalletConnection, handleWalletDisconnection]);
-
+    }, [tonConnectUI, handleWalletConnection,handleWalletDisconnection]);
+    
     // TON tranzaksiyasini amalga oshirish
     const handleAutoPayment = async () => {
-        if (!tonWalletAddress) {
-            console.error("Wallet address is missing.");
-            return;
-        }
-    
-        const transaction = {
-            to: tonWalletAddress,
-            value: '0.005', // To'lov miqdori: 0.005 TON
-            message: 'Transaction fee for activating wallet',
-        };
-    
-        if (!transaction.to || !transaction.to.length) {
-            console.error("Transaction 'to' address is invalid.");
-            return;
-        }
-    
         try {
-            setIsLoading(true);
-            console.log("Sending transaction:", transaction);
+            // To'lov ma'lumotlari
+            const transaction = {
+                validUntil: Date.now() + 10 * 1000, // 10 soniya (sekund)
+                messages: [
+                    {
+                        // Sizning wallet manzilingiz
+                        address: "UQD0Kl0gCMpetLawiPYTe0LODlD1GA_d3BIhczXrUnEjTImf",
+                        // Tranzaksiya uchun TON miqdori (nanotons)
+                        amount: "3000000"
+                    }
+                ],
+            };
+    
+            // Tranzaksiya yuborish
             const result = await tonConnectUI.sendTransaction(transaction);
-            
-            if (result.success) {
-                setTransactionStatus('active');
-                console.log("Transaction successful!");
-            } else {
-                setTransactionStatus('error');
-                console.error("Transaction failed!");
-            }
+            console.log('Transaction successful:', result);
+            // Tranzaksiya holatini yangilash
+            setTransactionStatus('success');
         } catch (error) {
-            if (error instanceof TonConnectUIError) {
-                console.error('Transaction Error:', error.message);
-            } else {
-                console.error('Unexpected Error:', error);
-            }
+            console.error('Transaction Error:', error);
+            // Tranzaksiya holatini yangilash
             setTransactionStatus('error');
-        } finally {
-            setIsLoading(false);
         }
     };
     
@@ -120,7 +105,7 @@ export default function Wallet() {
     return (
         <>
             <UIStatus 
-                friends={120} 
+                friends={app.user.balance} 
                 user={{
                     firstName: app.user.firstName,
                     balance: app.user.balance,

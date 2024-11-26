@@ -21,7 +21,7 @@ export default function Friends() {
             <Toaster position="top-center" />
 
             <UIStatus
-                friends={120}
+                friends={app.user.balance}
                 user={{
                     firstName: app.user.firstName,
                     profileImage: app.profileImage

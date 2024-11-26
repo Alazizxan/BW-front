@@ -23,7 +23,7 @@ const UIStatus = ({ balance, friends, user }) => {
             </span>
           )}
 
-          {friends && <span className="friends-count">{friends} Friends</span>}
+          {friends && <span className="friends-count">{friends} BW</span>}
         </div>
       )}
     </div>

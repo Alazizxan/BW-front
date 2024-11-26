@@ -10,6 +10,9 @@ export default function Home() {
     const navigate = useNavigate();
     const app = useAppStore()
 
+
+    const userStatus = app.statususer?.activation || false;
+
     const action = () => {
         navigate('/earn')
     }
@@ -17,10 +20,8 @@ export default function Home() {
     return <>
        <div className="mt-[20px]">
             <ActiveCard
-                taskTitle="Premium"
-                taskDescription="Get active and get prize!"
-                status={false}
-                action={() => action()}
+                user={app.user}
+                admin={false}
             />
         </div>
 

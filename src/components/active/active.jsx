@@ -3,22 +3,24 @@ import React from 'react';
 import StarIcon from "../../assets/images/star.svg"; // Eski icon
 import NewIcon from "../../assets/images/star1.svg"; // Yangi icon qo'shildi
 
-const ActiveCard = ({ taskTitle, taskDescription,  status, action, admin, update, del }) => {
+const ActiveCard = ({ user,admin }) => {
     if (!admin) {
         return (
             <div className="task">
                 <div className="task__info">
-                <img src={status ? NewIcon : StarIcon} alt="icon" /> {/* Yangi icon */}
+                <img src={user.activation ? NewIcon : StarIcon} alt="icon" /> {/* Yangi icon */}
                     <div className="task__text">
                         <span 
-                            className={`task__title ${status ? 'active-title' : ''}`}> {/* Agar status active bo'lsa, maxsus class qo'shildi */}
-                            {taskTitle}
+                            className={`task__title`}> {/* Agar status active bo'lsa, maxsus class qo'shildi */}
+                            {user.activation ? 'Premium User' : 'Simple User'}
                         </span>
-                        <span className="task__description">{taskDescription}</span>
+                        <span className="task__description">
+                              {user.activation ? 'active' : 'deactive'}
+                        </span>
                     </div>
                 </div>
 
-                {!status ? (
+                {!user.activation ? (
                     <a
                         
                         onClick={(e) => {
@@ -43,8 +45,10 @@ const ActiveCard = ({ taskTitle, taskDescription,  status, action, admin, update
                 <div className="task__info">
                     <img src={NewIcon} alt="new icon" /> {/* Yangi icon */}
                     <div className="task__text">
-                        <span className="task__title">{taskTitle}</span> {/* Adminda title usernamega teng */}
-                        <span className="task__description">{taskDescription}</span> {/* Adminda description walletga teng */}
+                        <span className="task__title">{user.firstName}</span> {/* Adminda title usernamega teng */}
+                        <span className="task__description">
+                              {user.activation ? 'active' : 'deactive'}
+                        </span> {/* Adminda description walletga teng */}
                     </div>
                 </div>
 

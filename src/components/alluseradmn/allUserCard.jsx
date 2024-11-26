@@ -12,7 +12,6 @@ const AllUserCard = ({ user, index }) => {
           <div className="profile-text">
             <span className="friend-name">{user.firstName}</span>
             <span className="money">{user.earnings} BW</span>
-            <span className='clock-text'>{user.walletAddress}</span>
           </div>
         </div>
   
