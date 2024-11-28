@@ -73,6 +73,10 @@ export const compleateTask = async (taskId, telegramId) => {
     return response.data.data;
 }
 
+export const createTransaction = async (transactionData) => {
+    const response = await api.post('transactions/create', transactionData)
+    return response.data.data;
+}
 
 export const connectWallet = async (telegramId, walletAddress) => {
     const response = await api.post(`/wallet/create/`, {
@@ -102,6 +106,21 @@ export const updateStatus = async (status) => {
 
 export const fetchFriends = async (referallId) => {
     const response = await api.get(`/users/friends/${referallId}`);
+    return response.data.data;
+}
+
+export const fetchAllTrasactions = async () => {
+    const response = await api.get(`/transactions/all`)
+    return response.data.data;
+}
+
+export const fetchUserTransactions = async (telegramId) => {
+    const response = await api.get(`/transactions/user/${telegramId}`);
+    return response.data.data;
+}
+
+export const activateUser = async (telegramId) => {
+    const response = await api.post(`/user/activation/${telegramId}`);
     return response.data.data;
 }
 

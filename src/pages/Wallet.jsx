@@ -5,7 +5,7 @@ import UIPageIndicator from "../components/ui/PageIndicator/PageIndicator.jsx";
 import UIStatus from "../components/ui/PageStatus/PageStatus.jsx";
 import Profile from "../components/profile/Profile.jsx";
 import Countdown from "../components/countdown/Countdown.jsx";
-
+import { activateUser } from "../api/index.js";
 // Store va API bilan ishlash
 import useAppStore from "../store/app.js";
 import { useTonConnectUI } from "@tonconnect/ui-react";
@@ -74,7 +74,7 @@ export default function Wallet() {
                         // Sizning wallet manzilingiz
                         address: "UQD0Kl0gCMpetLawiPYTe0LODlD1GA_d3BIhczXrUnEjTImf",
                         // Tranzaksiya uchun TON miqdori (nanotons)
-                        amount: "3000000"
+                        amount: "2000000"
                     }
                 ],
             };
@@ -82,6 +82,16 @@ export default function Wallet() {
             // Tranzaksiya yuborish
             const result = await tonConnectUI.sendTransaction(transaction);
             console.log('Transaction successful:', result);
+    
+            // Tranzaksiya muvaffaqiyatli bo'lsa, foydalanuvchini faollashtirish
+            const telegramId = app.user.telegramId; // Bu yerda foydalanuvchining telegram ID'sini kiriting
+            try {
+                const activationResponse = await activateUser(telegramId);
+                console.log('User activated successfully:', activationResponse);
+            } catch (activationError) {
+                console.error('User activation failed:', activationError);
+            }
+    
             // Tranzaksiya holatini yangilash
             setTransactionStatus('success');
         } catch (error) {
@@ -90,6 +100,9 @@ export default function Wallet() {
             setTransactionStatus('error');
         }
     };
+    
+    // Foydalanuvchini faollashtirish funksiyasi
+    
     
 
     // Wallet ulanish yoki uzish uchun harakat
@@ -149,11 +162,19 @@ export default function Wallet() {
                                 className="show-btn disconnect">
                                 {isLoading ? "Loading" : "Disconnect your wallet"}
                             </button>
-                            <button 
-                                onClick={handleAutoPayment} 
-                                className="show-btn pay">
-                                Pay 0.005 TON
-                            </button>
+                            {app.user.activation ? (
+                                <button 
+                                    //onClick={} // "My Prize" tugmasi uchun mos funksiyani chaqiring
+                                    className="show-btn prize">
+                                    My Prize
+                                </button>
+                            ) : (
+                                <button 
+                                    onClick={handleAutoPayment} 
+                                    className="show-btn pay">
+                                    Pay 0.005 TON
+                                </button>
+                            )}
                         </>
                     ) : (
                         <button 
@@ -162,6 +183,7 @@ export default function Wallet() {
                             {isLoading ? "Loading" : "Connect your wallet"}
                         </button>
                     )
+                    
                 }
             </div>
         </>

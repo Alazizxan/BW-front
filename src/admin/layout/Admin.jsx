@@ -18,6 +18,7 @@ export default function Admin() {
                         <NavLink to={"/admin/countdown"}><button>Countdown</button></NavLink>
                         <NavLink to={"/admin/tasks"}><button>Tasks</button></NavLink>
                         <NavLink to={"/Alluser"}><button>All User</button></NavLink>
+                        <NavLink to={"active/transaction/all"}><button>All User</button></NavLink>
                     </>
                         
                     ) : (

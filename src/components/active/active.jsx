@@ -1,28 +1,29 @@
 import './Active.css';
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import StarIcon from "../../assets/images/star.svg"; // Eski icon
 import NewIcon from "../../assets/images/star1.svg"; // Yangi icon qo'shildi
 
-const ActiveCard = ({ user,admin }) => {
+const ActiveCard = ({ user, admin }) => {
+    const navigate = useNavigate();
+
     if (!admin) {
         return (
             <div className="task">
                 <div className="task__info">
-                <img src={user.activation ? NewIcon : StarIcon} alt="icon" /> {/* Yangi icon */}
+                    <img src={user.activation ? NewIcon : StarIcon} alt="icon" />
                     <div className="task__text">
-                        <span 
-                            className={`task__title`}> {/* Agar status active bo'lsa, maxsus class qo'shildi */}
+                        <span className={`task__title`}>
                             {user.activation ? 'Premium User' : 'Simple User'}
                         </span>
                         <span className="task__description">
-                              {user.activation ? 'active' : 'deactive'}
+                            {user.activation ? 'active' : 'deactive'}
                         </span>
                     </div>
                 </div>
 
                 {!user.activation ? (
                     <a
-                        
                         onClick={(e) => {
                             e.preventDefault();
                             action();
@@ -33,7 +34,7 @@ const ActiveCard = ({ user,admin }) => {
                         Activate
                     </a>
                 ) : (
-                    <span className="task__button2 disabled"> {/* Bosilmaydigan class qo'shildi */}
+                    <span className="task__button2 disabled">
                         Active
                     </span>
                 )}
@@ -43,12 +44,12 @@ const ActiveCard = ({ user,admin }) => {
         return (
             <div className="task">
                 <div className="task__info">
-                    <img src={NewIcon} alt="new icon" /> {/* Yangi icon */}
+                    <img src={NewIcon} alt="new icon" />
                     <div className="task__text">
-                        <span className="task__title">{user.firstName}</span> {/* Adminda title usernamega teng */}
+                        <span className="task__title">{user.firstName}</span>
                         <span className="task__description">
-                              {user.activation ? 'active' : 'deactive'}
-                        </span> {/* Adminda description walletga teng */}
+                            {user.activation ? 'active' : 'deactive'}
+                        </span>
                     </div>
                 </div>
 
@@ -60,18 +61,17 @@ const ActiveCard = ({ user,admin }) => {
                         }}
                         className="task__button text-[14px] p-[0px]"
                     >
-                        Confirm {/* Delete o'rniga Confirm */}
+                        Confirm
                     </a>
 
                     <a
                         onClick={(e) => {
                             e.preventDefault();
-                            update();
+                            navigate(`transaction/create/${user.telegramId}`); // Dinamik yo'naltirish
                         }}
                         className="task__button text-[14px] p-[0px]"
-                        href="/transfer-page" // Transfer sahifasiga yo'naltiradi
                     >
-                        Transfer {/* Update o'rniga Transfer */}
+                        Transfer
                     </a>
                 </div>
             </div>

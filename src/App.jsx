@@ -16,12 +16,14 @@ import useAppStore from "./store/app.js";
 import TopReferrals from "./pages/Topref.jsx"
 
 import Statistic from "./admin/Statistic.jsx";
+import CreateTransaction from "./admin/create-transaction.jsx";
 import Tasks from "./admin/Tasks.jsx";
 import UpdateTask from './admin/UpdateTask.jsx'
 import Active from './admin/active.jsx';
 import Admin from "./admin/layout/Admin.jsx";
 import {CreateTask} from "./admin/CreateTask.jsx";
 import UpdateCountdown from "./admin/UpdateCountdown.jsx";
+import TransactionHistory from "./admin/transaction-history.jsx";
 
 function App() {
     const app = useAppStore()
@@ -58,6 +60,8 @@ function App() {
                     <Route path='tasks/update/:id' element={<UpdateTask/>}/>
                     <Route path='tasks/create/' element={<CreateTask/>}/>
                     <Route path='countdown/' element={<UpdateCountdown/>}/>
+                    <Route path="active/transaction/create/:telegramId" element={<CreateTransaction />} />
+                    <Route path="active/transaction/all" element={<TransactionHistory />}/>
                 </Route>
                 <Route path='Alluser/' element={<AllUserAdmn/>}/> //this is a new
 
