@@ -2,7 +2,7 @@ import React from 'react';
 import './Friend.css';
 import profileImage from '../../assets/images/friend-profile.svg';
 
-function Friend({ friendName, money, date, clock }) {
+function Friend({ profileImage, friendName, money, date, clock }) {
   return (
     <div className="friend-task">
       <div className="profile">

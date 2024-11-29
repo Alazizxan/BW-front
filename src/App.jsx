@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Route, Routes} from "react-router-dom";
 
+
 import Home from "./pages/Home.jsx";
 import Earn from "./pages/Earn.jsx";
 import Friends from "./pages/Friends.jsx";
@@ -9,7 +10,7 @@ import Wrapper from "./wrapper/Wrapper.jsx";
 import Passed from "./pages/Passed.jsx";
 import UILoading from "./components/ui/Loading/UILoading.jsx";
 import AllUserAdmn from "./pages/Alluser-admn.jsx";
-
+import MyTransactionHistory from "./pages/user-transaction.jsx"
 
 import useAppStore from "./store/app.js";
 
@@ -49,6 +50,7 @@ function App() {
                     <Route path="/friends" element={<Friends/>}/>
                     <Route path="/wallet" element={<Wallet/>}/>
                     <Route path='/topreferrals' element={<TopReferrals/>}/>
+                    <Route path='/myprize' element={<MyTransactionHistory/>}/>
                 </Route>
 
                 <Route path="/passed" element={<Passed/>}/>

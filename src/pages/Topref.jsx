@@ -36,7 +36,7 @@ export default function TopReferrals() {
       />
       <UIPageIndicator page="Top Referrals" />
       
-      <div className="mt-4 px-4">
+      <div className="mt-4 ">
         <div className="mb-4">
                   </div>
         
@@ -44,6 +44,7 @@ export default function TopReferrals() {
           {topuser.map((user, index) => (
             <TopReferralCard 
               key={index}
+              
               user={user}
               index={index}
             />

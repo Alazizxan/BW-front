@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from 'react-router-dom';
 
 // Importlar UI va tonConnect bilan ishlash uchun
 import UIPageIndicator from "../components/ui/PageIndicator/PageIndicator.jsx";
@@ -102,7 +103,11 @@ export default function Wallet() {
     };
     
     // Foydalanuvchini faollashtirish funksiyasi
-    
+    const navigate = useNavigate();
+
+    const handlePrizeClick = () => {
+        navigate('/myprize');
+     };
     
 
     // Wallet ulanish yoki uzish uchun harakat
@@ -164,7 +169,7 @@ export default function Wallet() {
                             </button>
                             {app.user.activation ? (
                                 <button 
-                                    //onClick={} // "My Prize" tugmasi uchun mos funksiyani chaqiring
+                                    onClick={handlePrizeClick} // "My Prize" tugmasi uchun mos funksiyani chaqiring
                                     className="show-btn prize">
                                     My Prize
                                 </button>

@@ -36,6 +36,7 @@ export default function Friends() {
                         return (
                             <Friend
                                 key={index}
+                                profileImage={friend.profileImage}
                                 friendName={friend.firstName}
                                 money={friend.balance}
                                 clock={friend.time}
