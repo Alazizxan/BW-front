@@ -6,30 +6,34 @@ import UIPageIndicator from "../components/ui/PageIndicator/PageIndicator.jsx";
 import UIStatus from "../components/ui/PageStatus/PageStatus.jsx";
 import Profile from "../components/profile/Profile.jsx";
 import Countdown from "../components/countdown/Countdown.jsx";
-import { activateUser } from "../api/index.js";
+import { activateUser, getWallet } from "../api/index.js";
 // Store va API bilan ishlash
 import useAppStore from "../store/app.js";
 import { useTonConnectUI } from "@tonconnect/ui-react";
 import { connectWallet, disconnectWallet } from "../api/index.js";
 
-
 export default function Wallet() {
     const app = useAppStore();
-
     const [tonConnectUI] = useTonConnectUI();
     const [tonWalletAddress, setTonWalletAddress] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [transactionStatus, setTransactionStatus] = useState(null);
 
-    // Walletni ulash
+    // Walletni ulash va tekshirish
     const handleWalletConnection = useCallback(async (address) => {
-        setIsLoading(true);
-        await connectWallet(app.user.id, address).then(() => {
+        // Avval serverdan wallet tekshiriladi
+        const existingWallet = await getWallet(app.user.id);
+        
+        if (!existingWallet) {
+            // Agar wallet serverda mavjud bo'lmasa, ulanadi
+            setIsLoading(true);
+            await connectWallet(app.user.id, address);
             setIsLoading(false);
-            setTonWalletAddress(address);
-        });
+        }
+        
+        setTonWalletAddress(address);
         console.log("Wallet connected successfully!");
-    }, []);
+    }, [app.user.id]);
     
     // Walletni uzish faqat qo'lda bajarilsin
     const handleWalletDisconnection = useCallback(async () => {
@@ -39,15 +43,28 @@ export default function Wallet() {
             setTonWalletAddress(null);
         });
         console.log("Wallet disconnected successfully!");
-    }, []);
+    }, [app.user.id]);
     
     // Wallet holatini tekshirish va boshqarish
     useEffect(() => {
         const checkWalletConnection = async () => {
-            if (tonConnectUI.account?.address) {
-                await handleWalletConnection(tonConnectUI.account?.address);
+            try {
+                // Avval serverdan mavjud wallet tekshiriladi
+                const existingWallet = await getWallet(app.user.id);
+                
+                if (existingWallet && existingWallet.walletAddress) {
+                    // Agar serverda wallet mavjud bo'lsa, ulash
+                    setTonWalletAddress(existingWallet.walletAddress);
+                    return;
+                }
+                
+                // Agar tonConnect accounti bo'lsa va serverda wallet yo'q bo'lsa
+                if (tonConnectUI.account?.address) {
+                    await handleWalletConnection(tonConnectUI.account.address);
+                }
+            } catch (error) {
+                console.error("Wallet check error:", error);
             }
-            // disconnect qismi avtomatik ravishda bajarilmaydi
         };
     
         checkWalletConnection();
@@ -56,13 +73,12 @@ export default function Wallet() {
             if (wallet) {
                 await handleWalletConnection(wallet.account.address);
             }
-            // disconnect qismi avtomatik ravishda bajarilmaydi
         });
     
         return () => {
             unsubscribe();
         };
-    }, [tonConnectUI, handleWalletConnection,handleWalletDisconnection]);
+    }, [tonConnectUI, handleWalletConnection, app.user.id]);
     
     // TON tranzaksiyasini amalga oshirish
     const handleAutoPayment = async () => {
@@ -107,7 +123,7 @@ export default function Wallet() {
 
     const handlePrizeClick = () => {
         navigate('/myprize');
-     };
+    };
     
 
     // Wallet ulanish yoki uzish uchun harakat
@@ -169,7 +185,7 @@ export default function Wallet() {
                             </button>
                             {app.user.activation ? (
                                 <button 
-                                    onClick={handlePrizeClick} // "My Prize" tugmasi uchun mos funksiyani chaqiring
+                                    onClick={handlePrizeClick}
                                     className="show-btn prize">
                                     My Prize
                                 </button>

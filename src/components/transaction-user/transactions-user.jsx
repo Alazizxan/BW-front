@@ -12,7 +12,7 @@ const TransactionUser = ({
   onDelete,
 }) => {
   return (
-    <div className=" text-white rounded-lg shadow-lg p-4  flex justify-between items-center">
+    <div className="bg-[rgba(26,26,27,0.5)] backdrop-blur-[15px] shadow-lg border border-[rgba(255,255,255,0.1)] text-white rounded-lg shadow-lg p-4  flex justify-between items-center">
       <div className="flex items-center">
         
         <div>

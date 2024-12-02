@@ -88,7 +88,7 @@ export default function TransactionHistory() {
 
       <button
         className="w-[90%] mx-auto mt-[15px] mb-[5px] bg-white h-[40px] text-black rounded-[8px]"
-        onClick={() => navigate('/admin/transactions/create')}
+        onClick={() => navigate('/admin/active')}
         disabled={isLoading}
       >
         Create Transaction

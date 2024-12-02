@@ -92,7 +92,7 @@ const handleChange = (e) => {
                 <input
                     type="number"
                     name="amount"
-                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full text-black px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={transaction.amount}
                     placeholder="Miqdorni kiriting"
                     onChange={handleChange}
@@ -108,7 +108,7 @@ const handleChange = (e) => {
                 <input
                     type="text"
                     name="telegramId"
-                    className="w-full px-3 py-2 border rounded-md bg-gray-100 cursor-not-allowed"
+                    className="w-full text-gray-600 px-3 py-2 border rounded-md bg-gray-100 cursor-not-allowed"
                     value={transaction.telegramId}
                     placeholder={transaction.telegramId || "Telegram ID"}
                     disabled

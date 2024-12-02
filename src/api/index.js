@@ -78,20 +78,28 @@ export const createTransaction = async (transactionData) => {
     return response.data.data;
 }
 
-export const connectWallet = async (telegramId, walletAddress) => {
+export const getWallet = async (userId) => {
+    try {
+        const response = await api.get(`/wallet/get/${userId}`);
+        return response.data.data;
+    } catch (error) {
+        console.error('Error fetching wallet:', error);
+        return null;
+    }
+}
+
+export const connectWallet = async (userId, walletAddress) => {
     const response = await api.post(`/wallet/create/`, {
-        userId: telegramId,
+        userId: userId,
         walletAddress: walletAddress
     });
 
     return response.data.data;
 }
 
-
-
-export const disconnectWallet = async (walletAddress) => {
-    await api.delete(`/wallet/delete/${walletAddress}`)
-    return true
+export const disconnectWallet = async (userId) => {
+    await api.delete(`/wallet/delete/${userId}`);
+    return true;
 }
 
 export const getStatus = async () => {

@@ -39,15 +39,6 @@ export default function Avtive() {
                 ))}
             </div>
 
-             <button
-                className="w-[90%] mx-auto mt-[15px] mb-[5px] bg-white h-[40px] text-black rounded-[8px]"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate(`transaction/all`); // Dinamik yo'naltirish
-              }}
-                
-            >
-                Create Task
-            </button>
+             
         </>
     }
