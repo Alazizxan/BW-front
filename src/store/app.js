@@ -1,6 +1,5 @@
-import {create} from 'zustand';
-import {compleateTask, fetchCountdown, fetchFriends, fetchTopRef, fetchUserDetails, fetchUserTasks, getStatus, register} from "../api/index.js";
-
+import { create } from 'zustand';
+import { compleateTask, fetchCountdown, fetchFriends, fetchTopRef, fetchUserDetails, fetchUserTasks, getStatus, register } from "../api/index.js";
 import getFileLink from "../utils/file.js";
 
 
@@ -8,23 +7,30 @@ const useAppStore = create((set) => ({
     user: {},
     tasks: {},
     friends: [],
-    profileImage: {},
+    profileImage: {}, // Profile rasmi
     status: null,
     topfer: {},
     statususer: {},
 
-
     init: async (referall) => {
-        const countdown = await fetchCountdown()
-        const user = await register(referall)
+        const countdown = await fetchCountdown();
+        const user = await register(referall);
         const friends = await fetchFriends(user.telegramId);
         const tasks = await fetchUserTasks(user.telegramId);
-        const profileImage = await getFileLink(user.profileImage);
+        
+        // Rasmni olish va default qiymatni tekshirish
+        let profileImage = user.profileImage;
+        if (profileImage === 'no picture') {
+            profileImage = 'https://cs13.pikabu.ru/post_img/big/2023/04/27/0/1682543909183239363.png';  // Default rasm
+        } else {
+            profileImage = await getFileLink(profileImage);
+        }
+
         const status = countdown.status;
         const topfer = await fetchTopRef();
         const statususer = await fetchUserDetails(user.telegramId);
 
-        set({user, profileImage, status, friends, topfer, tasks,statususer});
+        set({ user, profileImage, status, friends, topfer, tasks, statususer });
     },
 
     passTask: async (taskId) => {
@@ -33,14 +39,13 @@ const useAppStore = create((set) => ({
             const user = await register(state.user.telegramId);
 
             fetchUserTasks(state.user.telegramId).then(async (updatedTasks) => {
-                set({ user: user})
-                set({tasks: updatedTasks});
+                set({ user: user })
+                set({ tasks: updatedTasks });
             });
 
-            return {tasks: state.tasks, user: state.user};
+            return { tasks: state.tasks, user: state.user };
         });
     }
 }));
-
 
 export default useAppStore;

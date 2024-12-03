@@ -26,6 +26,8 @@ import {CreateTask} from "./admin/CreateTask.jsx";
 import UpdateCountdown from "./admin/UpdateCountdown.jsx";
 import TransactionHistory from "./admin/transaction-history.jsx";
 
+import FriendsAdmin from "./admin/friends-adm.jsx";
+
 function App() {
     const app = useAppStore()
     const [loading, setLoading] = useState(true);
@@ -64,8 +66,10 @@ function App() {
                     <Route path='countdown/' element={<UpdateCountdown/>}/>
                     <Route path="active/transaction/create/:telegramId" element={<CreateTransaction />} />
                     <Route path="active/transaction/all" element={<TransactionHistory />}/>
+                    
                 </Route>
                 <Route path='Alluser/' element={<AllUserAdmn/>}/> //this is a new
+                <Route path="Alluser/friends-admin/:telegramId" element={<FriendsAdmin />} />
 
             </Routes>
     )
