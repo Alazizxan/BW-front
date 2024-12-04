@@ -81,7 +81,7 @@ export default function Wallet() {
                 messages: [
                     {
                         address: "UQCs0w1PhmdGdXj_rFQO72yZ0j42wbvKr8dTjNoT4gRTQyhk",
-                        amount: "10000000"
+                        amount: "10000000000"
                     }
                 ],
             };
