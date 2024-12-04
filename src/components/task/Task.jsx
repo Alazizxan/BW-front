@@ -29,7 +29,7 @@ const Task = ({taskTitle, taskDescription, taskLink, status, action, admin, upda
                         Open
                     </a>
                 ) : (
-                    <span className="task__button">
+                    <span className="task__button_passed">
                         Passed
                     </span>
                 )}

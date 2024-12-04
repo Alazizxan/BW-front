@@ -39,7 +39,7 @@
 .task__button {
   font-family: 'Monomaniac One', serif;
   font-size: 16px;
-  color: white;
+  color: rgb(37, 125, 11);
   padding: 0px 24px 5px 24px;
   width: 68px;
   display: flex;
@@ -55,4 +55,21 @@
 
 .task__button:hover {
   background-color: rgba(102, 102, 102, 0.8); /* Tugma hoverda shaffof rang */
+}
+
+.task__button_passed {
+  font-family: 'Monomaniac One', serif;
+  font-size: 16px;
+  color: rgb(149, 48, 7);
+  padding: 0px 24px 5px 24px;
+  width: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  background-color: rgba(40, 40, 40, 0.8); /* Tugma uchun shaffof fon */
+  backdrop-filter: blur(5px); /* Tugmaning orqa fonini xiralashtirish */
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Tugma atrofiga nozik oq chiziq */
 }

@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const TELEGRAM_BOT_TOKEN = "8159558283:AAEetjs_CfzllCfFDX_-BzSFpQE9l-DeLeo";
+
+const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_API_BOT_TOKEN;; 
 
 export default async function getFileLink(fileId) {
     const response = await axios.get(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getFile?file_id=${fileId}`);

@@ -11,10 +11,18 @@ import getFileLink from "../utils/file.js";
 export default function Friends() {
     const app = useAppStore();
 
-    const handleAction = () => {
-        navigator.clipboard.writeText(`https://t.me/ASAPNARbot?start=${app.user.telegramId}`);
-        toast('Invite link copied');
+    const BOT_URL = import.meta.env.VITE_BOT_URL;
+
+    if (!BOT_URL) {
+        throw new Error("Bot URL yuklanmadi. Iltimos, .env faylni tekshiring!");
     }
+
+    // Harakat funksiyasi
+    const handleAction = () => {
+        const inviteLink = `${BOT_URL}?start=${app.user.telegramId}`;
+        navigator.clipboard.writeText(inviteLink);
+        toast('Invite link copied');
+    };
 
     return (
         <>
