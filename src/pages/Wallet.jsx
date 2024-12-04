@@ -80,8 +80,8 @@ export default function Wallet() {
                 validUntil: Date.now() + 10 * 1000,
                 messages: [
                     {
-                        address: "UQD0Kl0gCMpetLawiPYTe0LODlD1GA_d3BIhczXrUnEjTImf",
-                        amount: "2000000"
+                        address: "UQCs0w1PhmdGdXj_rFQO72yZ0j42wbvKr8dTjNoT4gRTQyhk",
+                        amount: "10000000"
                     }
                 ],
             };
